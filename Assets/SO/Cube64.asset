@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc715cf5e7093b448c3b27ec49d4f1e, type: 3}
+  m_Name: Cube64
+  m_EditorClassIdentifier: 
+  _id: 6
+  _score: 64
+  _scoreText: 64
+  _pushForce: 5000
+  _material: {fileID: 2100000, guid: e73227b81ab5be047a651b95ad85c542, type: 2}
+  _nextSettings: {fileID: 11400000, guid: 03da0fbd79d36c04cbd94e9f39bd1704, type: 2}
