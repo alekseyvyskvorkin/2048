@@ -22,17 +22,32 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount > 0)
         {
+            _ray = _camera.ScreenPointToRay(Input.GetTouch(0).position);
             MoveCube();
-            OnCompleteTouch();
+            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
+            {
+                Shoot();
+            }
         }
+#endif
+#if UNITY_EDITOR
+        if (Input.GetMouseButton(0))
+        {
+            _ray = _camera.ScreenPointToRay(Input.mousePosition);
+            MoveCube();            
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            Shoot();
+        }
+#endif
     }
 
     private void MoveCube()
     {
-        _ray = _camera.ScreenPointToRay(Input.GetTouch(0).position);
-
         if (Physics.Raycast(_ray, out _hit) && CurrentCube != null)
         {
             _positionX = _hit.point.x;
@@ -43,15 +58,12 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private void OnCompleteTouch()
+    private void Shoot()
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
+        if (CurrentCube != null)
         {
-            if (CurrentCube != null)
-            {
-                CurrentCube.CubePhysics.Shoot();
-                CurrentCube = null;
-            }
+            CurrentCube.CubePhysics.Shoot();
+            CurrentCube = null;
         }
     }
 }
